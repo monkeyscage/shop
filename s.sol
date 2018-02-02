@@ -29,6 +29,7 @@ output.length--;
 }
 
 function buy(address _output,address _input,uint _amount){
+if(price[_output][_input]==0)revert();
 erc20 token=erc20(_input);
 if(!token.transferFrom(msg.sender,this,_amount))revert();
 uint total=price[_output][_input]*_amount;
