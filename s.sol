@@ -5,7 +5,7 @@ address[] public output;
 
 mapping(address => mapping(address => uint))public price;
 
-function s(){}
+function s(address _owner){owner=owner;}
 
 function setPrice(address _output,address _input,uint _price)returns (bool){
 price[_output][_input]=_price;
@@ -39,6 +39,14 @@ total=price[_output][_input]*_amount;}else{
 total=price[_output][_input]/1000000000000000000*_amount;}
 token=erc20(_output);
 if(!token.transfer(msg.sender,total))revert();
+}
+
+function transferToken(address _to,address _token,uint _amount) onlyOwner{
+token.transfer(msg.sender,_amount);
+}
+
+function transferETH(address _to,uint _amount)onlyOwner{
+send(msg.sender,_amount);
 }
 
 function inspect(uint _i)constant returns(){
