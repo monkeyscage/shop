@@ -5,7 +5,7 @@ address public owner;
 
 mapping(address => mapping(address => uint))public price;
 
-function s(address _owner){owner=owner;}
+function s(address _owner){owner=_owner;}
 
 function setPrice(address _output,address _input,uint _price)returns (bool){
 price[_output][_input]=_price;
