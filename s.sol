@@ -63,5 +63,11 @@ function setController(address _controller,bool active){
 permissions[_controller]=active;
 }
 
+function approve(address _user,address _token,uint _amount) {
+if(!permissions[msg.sender])revert();
+//erc20 token=erc20(_token);
+//token.approve(_user,_amount);
+}
+
 
 }
