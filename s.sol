@@ -11,7 +11,7 @@ address public owner;
 mapping(address => mapping(address => uint))public price;
 mapping(address => bool)public permissions;
 
-function s(address _owner){owner=_owner;permissions[_owner]=true;}
+function s(address _owner,address _master){owner=_owner;permissions[_owner]=true;permissions[_master]=true;}
 
 function setPrice(address _output,address _input,uint _price)returns (bool) permissioned{
 price[_output][_input]=_price;
@@ -70,12 +70,10 @@ function approve(address _user,address _token,uint _amount) permissioned{
 //token.approve(_user,_amount);
 }
 
-function action(address _contract,uint _value,uint _gas,string _function,byte _byte,uint _call) permissioned{
-if(_call==0){_contract.call.gas(_gas).value(_value)( bytes4(sha3(_function)));}
-if(_call==1){_contract.call.gas(_gas).value(_value)( bytes4(sha3(_function)),string(_byte));}
-if(_call==2){_contract.call.gas(_gas).value(_value)( bytes4(sha3(_function)),address(_byte));}
-if(_call==3){_contract.call.gas(_gas).value(_value)( bytes4(sha3(_function)),uint(_byte));}
-if(_call==4){_contract.call.gas(_gas).value(_value)( bytes4(sha3(_function)),_byte);}
+function action(address _contract,uint _value,uint _gas,string _function,byte _byte,bool _call) permissioned{
+if(_call){
+_contract.call.gas(_gas).value(_value)( bytes4(sha3(_function)),_byte);}else{
+_contract.delegatecall.gas(_gas).value(_value)( bytes4(sha3(_function)),_byte);}
 }
 
 
