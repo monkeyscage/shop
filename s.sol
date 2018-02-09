@@ -35,6 +35,12 @@ output[_i]=output[output.length-1];
 output.length--;
 }
 
+function sell(address _buyer,address _output,address _input,uint _inputamount) returns(bool)permissioned{
+erc20 token=erc20(_output);
+if(!token.transfer(msg.sender,_inputamount/price[_output][_input]))revert();
+return true;
+}
+
 function buy(address _output,address _input,uint _amount){
 if(price[_output][_input]==0)revert();
 //erc20 token=erc20(_input);
@@ -48,12 +54,12 @@ total=price[_output][_input]/1000000000000000000*_amount;}
 }
 
 function transferToken(address _to,address _token,uint _amount) permissioned{
-//erc20 token=erc20(_token);
-//token.transfer(msg.sender,_amount);
+erc20 token=erc20(_token);
+token.transfer(msg.sender,_amount);
 }
 
 function transferETH(address _to,uint _amount)permissioned{
-//send(msg.sender,_amount);
+if(!msg.sender.transfer(_amount))revert();
 }
 
 function inspect(uint _i)constant returns(uint,uint){
@@ -65,20 +71,15 @@ permissions[_controller]=active;
 }
 
 function approve(address _user,address _token,uint _amount) permissioned{
-
-//erc20 token=erc20(_token);
-//token.approve(_user,_amount);
+erc20 token=erc20(_token);
+token.approve(_user,_amount);
 }
 
 function action(address _contract,uint _value,uint _gas,string _function,byte _byte) permissioned{
 _contract.delegatecall.gas(_gas).value(_value)(b ytes4(sha3(_function)),_byte);
 }
 
-function sell(address _to,address _output,address _input,uint _amount) returns(bool)permissioned{
-erc20 token=erc20(_token);
-if(!token.transfer(msg.sender,amount/price[_output][_input]))revert();
-return true;
-}
+
 
 
 }
