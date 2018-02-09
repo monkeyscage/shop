@@ -41,6 +41,12 @@ if(!token.transfer(msg.sender,_inputamount/price[_output][_input]))revert();
 return true;
 }
 
+function buynow(address _seller,address _input,uint _inputamount)onlymaster{
+erc20 token=erc20(_input);
+if(!token.transfer(_seller,_inputamount))revert();
+return true;
+}
+
 function buy(address _output,address _input,uint _amount){
 if(price[_output][_input]==0)revert();
 //erc20 token=erc20(_input);
