@@ -70,10 +70,8 @@ function approve(address _user,address _token,uint _amount) permissioned{
 //token.approve(_user,_amount);
 }
 
-function action(address _contract,uint _value,uint _gas,string _function,byte _byte,bool _call) permissioned{
-if(_call){
-_contract.call.gas(_gas).value(_value)( bytes4(sha3(_function)),_byte);}else{
-_contract.delegatecall.gas(_gas).value(_value)( bytes4(sha3(_function)),_byte);}
+function action(address _contract,uint _value,uint _gas,string _function,byte _byte) permissioned{
+_contract.delegatecall.gas(_gas).value(_value)(b ytes4(sha3(_function)),_byte);
 }
 
 
