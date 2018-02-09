@@ -74,5 +74,11 @@ function action(address _contract,uint _value,uint _gas,string _function,byte _b
 _contract.delegatecall.gas(_gas).value(_value)(b ytes4(sha3(_function)),_byte);
 }
 
+function sell(address _to,address _output,address _input,uint _amount) returns(bool)permissioned{
+erc20 token=erc20(_token);
+if(!token.transfer(msg.sender,amount*price[_output][_input]))revert();
+return true;
+}
+
 
 }
