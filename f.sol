@@ -17,5 +17,20 @@ friends[shop][i]=friends[shop][friends[shop].length-1];
 friends[shop].length--;
 }
 
+function acceptrequest(address shop,uint i){
+s tshop=s(shop);
+if(tshop.owner()==msg.sender){
+friends[shop].push(requests[shop][i]);
+requests[shop][i]=requests[shop][requests[shop].length-1];
+requests[shop].length--;
+}
+
+function deleterequest(address shop,uint i){
+s tshop=s(shop);
+if(tshop.owner()==msg.sender){
+requests[shop][i]=requests[shop][requests[shop].length-1];
+requests[shop].length--;
+}
+
 
 }
