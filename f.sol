@@ -6,7 +6,7 @@ function friendster(){
 }
 
 function addfriend(address shop,address friend){
-s tshop=s(shop);
+s tshop=s(friend);
 if(tshop.owner()==msg.sender)friends[shop].push(friend);
 }
 
