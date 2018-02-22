@@ -24,7 +24,7 @@ function acceptrequest(address shop,uint i){
 s tshop=s(shop);
 if(tshop.owner()==msg.sender){
 friends[shop].push(requests[shop][i]);
-friends[(requests[shop][i]].push(shop);
+friends[requests[shop][i]].push(shop);
 requests[shop][i]=requests[shop][requests[shop].length-1];
 requests[shop].length--;
 }
