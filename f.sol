@@ -8,7 +8,8 @@ function friendster(){
 
 function addfriend(address shop,address friend){
 s tshop=s(friend);
-if(tshop.owner()==msg.sender)friends[shop].push(friend);
+if(tshop.owner()==msg.sender)revert();
+requests[shop].push(friend);
 }
 
 function removefriend(address shop,uint i){
@@ -35,6 +36,8 @@ requests[shop][i]=requests[shop][requests[shop].length-1];
 requests[shop].length--;
 }
 }
+
+function allfriends(address shop)constant returns(uint,uint){return (requests[shop].length,friends[shop].length);}
 
 
 }
