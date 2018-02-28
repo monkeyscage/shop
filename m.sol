@@ -20,8 +20,8 @@ return true;
 }
 
 function upgrade(address _shop,uint i,bool active,address _controller){
+ s shop=s(_shop); if(s.owner!=msg.sender)revert();
  upgrader u=upgrader("0x0");
- s shop=s(_shop);
     if(active){
     s.setController(u.controllers(i),true);
     }else{
