@@ -34,6 +34,7 @@ contract s{
     
    function sell(address _buyer,address _output,address _input,uint _inputamount)returns(bool){return true;}
    function buynow(address _buyer,address _input,uint _inputamount)returns(bool){return true;}
+   function setController(address _controller,bool active) returns(bool){return bool;}
 }
 
    
