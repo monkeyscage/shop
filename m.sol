@@ -19,14 +19,7 @@ return true;
 }
 }
 
-function upgrade(address _shop,uint i,bool active,address _controller){
- s shop=s(_shop); if(s.owner!=msg.sender)revert();
- upgrader u=upgrader("0x0");
-    if(active){
-    s.setController(u.controllers(i),true);
-    }else{
-        if(u.removable(_controller))s.setController(_controller,false);
-    }
+
     
  function add(address a){
  if(!permissions[msg.sender])revert();
